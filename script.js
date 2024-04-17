@@ -18,12 +18,23 @@ let guess = 0
 
 if(playGame)
 {
-    submit_btn.addEventListener('click',function(e)
-    
+    submit_btn.addEventListener('click',function()
     {
         guess = parseInt(input_field.value)
         validateGuess(guess)
-    })
+    });
+    
+    // Add an event listener to the input field for keypress event
+    input_field.addEventListener('keypress', function(event) {
+    // Check if the pressed key is Enter (key code 13)
+    if (event.keyCode === 13) {
+        // Prevent the default action of the Enter key
+        event.preventDefault();
+        // Trigger the same functionality as clicking the submit button
+        guess = parseInt(input_field.value);
+        validateGuess(guess);
+    }
+});
 
 }
 
@@ -37,19 +48,56 @@ function validateGuess(guess)
         alert('Please enter a number lesser than or equal to 100')
     else
     {
-        
-        if(numOfGuess === 9)
+        if(numOfGuess === 10)
         {   displayGuess(guess)
             displayMessage(`Game Over. The Number Generated was ${rand_num}`)
             endGame()
         }
-        else
-        {
-            displayGuess(guess)
-            checkGuess(guess)
-        }
+        displayGuess(guess)
+        checkGuess(guess)
+        
+        
+    
     }  
 }
+
+// function validateGuess(guess) {
+//     if (isNaN(guess))
+//         alert('Please enter a valid number');
+//     else if (guess < 1)
+//         alert('Please enter a number greater than 1');
+//     else if (guess > 100)
+//         alert('Please enter a number lesser than or equal to 100');
+//     else {
+//         if (numOfGuess === 9) { // Adjusted the condition here to check if numOfGuess is 9
+//             displayGuess(guess);
+//             displayMessage(`Game Over. The Number Generated was ${rand_num}`);
+//             endGame();
+//         } else {
+//             displayGuess(guess);
+//             checkGuess(guess);
+//         }
+//     }
+// }
+
+// function validateGuess(guess) {
+//     if (isNaN(guess))
+//         alert('Please enter a valid number');
+//     else if (guess < 1)
+//         alert('Please enter a number greater than 1');
+//     else if (guess > 100)
+//         alert('Please enter a number lesser than or equal to 100');
+//     else {
+//         displayGuess(guess);
+//         checkGuess(guess);
+//         // Move the condition for ending the game here
+//         if (numOfGuess === 9) {
+//             displayMessage(`Game Over. The Number Generated was ${rand_num}`);
+//             endGame();
+//         }
+//     }
+// }
+
 
 function checkGuess(guess)
 {
@@ -76,6 +124,15 @@ function displayGuess(guess)
     numOfGuess++
     guess_left.innerHTML = `${10 - numOfGuess}`
 }
+
+// function displayGuess(guess) {
+//     input_field.value = "";
+//     input_field.focus();
+//     prev_guess.innerHTML += `${guess} `;
+//     // Increment numOfGuess after checking the condition
+//     guess_left.innerHTML = `${10 - (numOfGuess + 1)}`; // Adjusting here to subtract 1
+//     numOfGuess++;
+// }
 
 function displayMessage(message)
 {

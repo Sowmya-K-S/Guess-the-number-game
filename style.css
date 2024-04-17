@@ -8,6 +8,7 @@
 body
 {
     background-color: #DFF0D8;
+    font-family: poppins;
 }
 
 .main-heading
@@ -76,6 +77,7 @@ input[type=number] {
     font-weight: 700;
     border: none;
     background-color: #B71C1C;
+    font-family: poppins;
     text-align: center;
     margin-top: 50px;
     font-size: 18px;
